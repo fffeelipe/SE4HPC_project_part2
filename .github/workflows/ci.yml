@@ -15,7 +15,7 @@ jobs:
       uses: jwlawson/actions-setup-cmake@v1
 
     - name: install deps
-      run: sudo apt-get update && sudo apt-get install -y wget git bash gcc gfortran g++ make file libopenmpi3 slurm libopenmpi-dev
+      run: sudo apt update && sudo apt install -y wget git bash gcc gfortran g++ make file libopenmpi3 slurm libopenmpi-dev libfuse2 fuse2fs
 
     - name: Configure CMake
       run: cmake -S . -B build
@@ -25,6 +25,9 @@ jobs:
 
     - name: Run Tests
       run: ctest --test-dir build
+
+    - name: experimenting
+      run: wget https://github.com/sylabs/singularity/releases/download/v4.1.3/singularity-ce_4.1.3-focal_amd64.deb && sudo dpkg -i singularity-ce_4.1.3-focal_amd64.deb
 
     - name: create singularity image
       run: sudo singularity build --notest matrixMul.sif matrixMul.def
