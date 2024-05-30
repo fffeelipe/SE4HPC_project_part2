@@ -1,0 +1,13 @@
+Bootstrap: docker
+From: ubuntu:latest
+
+%files
+    build/main /opt
+    matrix*.txt /opt
+
+%post
+    echo "Installing required packages..."
+    apt-get update && apt-get install -y wget git bash gcc gfortran g++ make file libopenmpi3
+
+    echo "Compiling the MPI application..."
+    cd /opt

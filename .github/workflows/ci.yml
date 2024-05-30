@@ -26,4 +26,6 @@ jobs:
     - name: Run Tests
       run: ctest --test-dir build
 
+    - name: create singularity image
+      run: sudo singularity build --notest matrixMul.sif matrixMul.def
 

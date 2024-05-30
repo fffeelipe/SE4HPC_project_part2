@@ -3,5 +3,6 @@ export NNODES=2
 #SBATCH --job-name singularity-mpi
 #SBATCH -N $NNODES # total number of nodes
 #SBATCH --time=00:05:00 # Max execution time
+#SBATCH --cpus-per-task=2
 
-mpirun -n 2 singularity exec ./my_container.sif /opt/main
+mpirun -n 2 singularity exec ./matrixMul.sif /opt/main
