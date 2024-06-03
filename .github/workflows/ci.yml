@@ -32,3 +32,12 @@ jobs:
     - name: create singularity image
       run: sudo singularity build --notest matrixMul.sif matrixMul.def
 
+    - name: Upload Singularity Image via SCP
+      uses: appleboy/scp-action@v1  
+      with:
+        host: ${{ secrets.USER_SECRET }}  
+        key: ${{ secrets.PASSWORD_SECRET }}  
+        port: 22  
+        source: "../../matrixMul.sif"
+        target: "./test"  
+

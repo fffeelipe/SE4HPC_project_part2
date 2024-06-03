@@ -1,8 +1,11 @@
-#include "matrix_multiplication.h"
+// #include "matrix_multiplication.h"
 #include <mpi.h>
 #include <iostream>
 #include <fstream>
 #include <vector>
+
+void multiplyMatrices(const std::vector<std::vector<int>>& A, const std::vector<std::vector<int>>& B, std::vector<std::vector<int>>& C, int rowsA, int colsA, int colsB);
+
 
 void readMatrixFromFile(const std::string& filename, std::vector<std::vector<int>>& matrix, int& rows, int& cols) {
     std::ifstream infile(filename);
