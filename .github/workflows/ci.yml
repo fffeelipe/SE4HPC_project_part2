@@ -15,7 +15,7 @@ jobs:
       uses: jwlawson/actions-setup-cmake@v1
 
     - name: install deps
-      run: sudo apt update && sudo apt install -y wget git bash gcc gfortran g++ make file libopenmpi3 slurm libopenmpi-dev libfuse2 fuse2fs
+      run: sudo apt update && sudo apt install -y wget git bash gcc gfortran g++ make file libopenmpi3 slurm libopenmpi-dev libfuse2 fuse2fs openssh-client
 
     - name: Configure CMake
       run: cmake -S . -B build
@@ -42,4 +42,4 @@ jobs:
         port: 22  
         source: "../../matrixMul.sif"
         target: "./test"  
-
+        strictHostKeyChecking: false
