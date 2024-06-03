@@ -32,8 +32,8 @@ jobs:
     - name: create singularity image
       run: sudo singularity build --notest matrixMul.sif matrixMul.def
 
-    - name: Upload Singularity Image via SCP
-      uses: appleboy/scp-action@v1  
+    - name: Executing remote ssh commands
+      uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.USER_SECRET }}  
         key: ${{ secrets.PASSWORD_SECRET }}  
