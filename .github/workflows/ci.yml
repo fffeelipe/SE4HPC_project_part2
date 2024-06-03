@@ -15,7 +15,7 @@ jobs:
       uses: jwlawson/actions-setup-cmake@v1
 
     - name: install deps
-      run: sudo apt update && sudo apt install -y wget git bash gcc gfortran g++ make file libopenmpi3 slurm libopenmpi-dev libfuse2 fuse2fs openssh-client
+      run: sudo apt update && sudo apt install -y wget git bash gcc gfortran g++ make file libopenmpi3 slurm libopenmpi-dev libfuse2 fuse2fs sshpass
 
     - name: Configure CMake
       run: cmake -S . -B build
@@ -32,14 +32,19 @@ jobs:
     - name: create singularity image
       run: sudo singularity build --notest matrixMul.sif matrixMul.def
 
-    - name: Executing remote ssh commands
-      uses: appleboy/ssh-action@master
-      with:
-        host: login.g100.cineca.it  
-        username: ${{ secrets.USER_SECRET }} 
-        password: ${{ secrets.PASSWORD_SECRET }}
-        # key: ${{ secrets.PASSWORD_SECRET }}  
-        port: 22  
-        source: "../../matrixMul.sif"
-        target: "./test"  
-        strictHostKeyChecking: false
+    - name: Transfer singularity image with sshpass
+      run: sshpass -p "${{ secrets.PASSWORD_SECRET }} scp -o StrictHostKeyChecking=no matrixMul.sif matrixA.txt matrixB.txt"
+
+    - name: Run job via SSH
+      run: |
+        sshpass -p "${{ secrets.PASSWORD_SECRET }} ssh StrictHostKeyChecking=no a08trb71@login.g100.cineca.it"
+      # uses: appleboy/ssh-action@master
+      # with:
+      #   host: login.g100.cineca.it  
+      #   username: ${{ secrets.USER_SECRET }} 
+      #   password: ${{ secrets.PASSWORD_SECRET }}
+      #   # key: ${{ secrets.PASSWORD_SECRET }}  
+      #   port: 22  
+      #   source: "../../matrixMul.sif"
+      #   target: "./test"  
+      #   strictHostKeyChecking: false
