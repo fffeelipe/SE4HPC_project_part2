@@ -39,4 +39,9 @@ jobs:
       run: |
         sshpass -p "${{ secrets.PASSWORD_SECRET }}" ssh StrictHostKeyChecking=no a08trb71@login.g100.cineca.it
 
+        
+
+
+        
+
 
