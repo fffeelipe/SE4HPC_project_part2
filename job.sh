@@ -7,5 +7,5 @@ export NNODES=2
 #SBATCH --output stdout.out
 #SBATCH --error error.out
 
-
+module load intel intelmpi
 singularity exec matrixMul.sif bash -c "mpirun -np 2 /opt/main"
