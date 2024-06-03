@@ -33,18 +33,10 @@ jobs:
       run: sudo singularity build --notest matrixMul.sif matrixMul.def
 
     - name: Transfer singularity image with sshpass
-      run: sshpass -p "${{ secrets.PASSWORD_SECRET }} scp -o StrictHostKeyChecking=no matrixMul.sif matrixA.txt matrixB.txt"
+      run: sshpass -p "${{ secrets.PASSWORD_SECRET }}" scp -o StrictHostKeyChecking=no matrixMul.sif matrixA.txt matrixB.txt
 
     - name: Run job via SSH
       run: |
-        sshpass -p "${{ secrets.PASSWORD_SECRET }} ssh StrictHostKeyChecking=no a08trb71@login.g100.cineca.it"
-      # uses: appleboy/ssh-action@master
-      # with:
-      #   host: login.g100.cineca.it  
-      #   username: ${{ secrets.USER_SECRET }} 
-      #   password: ${{ secrets.PASSWORD_SECRET }}
-      #   # key: ${{ secrets.PASSWORD_SECRET }}  
-      #   port: 22  
-      #   source: "../../matrixMul.sif"
-      #   target: "./test"  
-      #   strictHostKeyChecking: false
+        sshpass -p "${{ secrets.PASSWORD_SECRET }}" ssh StrictHostKeyChecking=no a08trb71@login.g100.cineca.it
+
+
