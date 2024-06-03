@@ -35,8 +35,10 @@ jobs:
     - name: Executing remote ssh commands
       uses: appleboy/ssh-action@master
       with:
-        host: ${{ secrets.USER_SECRET }}  
-        key: ${{ secrets.PASSWORD_SECRET }}  
+        host: login.g100.cineca.it  
+        username: ${{ secrets.USER_SECRET }} 
+        password: ${{ secrets.PASSWORD_SECRET }}
+        # key: ${{ secrets.PASSWORD_SECRET }}  
         port: 22  
         source: "../../matrixMul.sif"
         target: "./test"  
