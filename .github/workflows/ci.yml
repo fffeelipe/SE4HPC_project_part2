@@ -33,7 +33,7 @@ jobs:
       run: sudo singularity build --notest matrixMul.sif matrixMul.def
 
     - name: Transfer singularity image with sshpass
-      run: sshpass -p "${{secrets.CENECA_SECRET}}" scp -o StrictHostKeyChecking=no {matrixMul.sif,job.sh,matrixA.txt,matrixB.txt}  a08trb71@login.g100.cineca.it:~
+      run: sshpass -p "${{secrets.CENECA_SECRET}}" scp -o StrictHostKeyChecking=no {matrixMul.sif,job.sh,matrixA.txt,matrixB.txt,build/main}  a08trb71@login.g100.cineca.it:~
 
     - name: delete cineca from known hosts
       run: ssh-keygen -f "/home/runner/.ssh/known_hosts" -R "login.g100.cineca.it"
