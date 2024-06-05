@@ -9,3 +9,5 @@ export NNODES=2
 
 module load intel intelmpi
 mpirun -n 2 singularity exec matrixMul.sif /opt/main
+
+
