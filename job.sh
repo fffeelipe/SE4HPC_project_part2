@@ -7,4 +7,4 @@ export NNODES=2
 #SBATCH --output stdout.out
 #SBATCH --error error.out
 
-singularity exec matrixMul.sif /opt/main
+singularity exec matrixMul.sif bash -c "mpirun -np 2 /opt/main"

@@ -13,4 +13,4 @@ From: ubuntu:latest
     cd /opt
 
 %runscript
-    mpirun -np 2 opt/main
+    /bin/bash
