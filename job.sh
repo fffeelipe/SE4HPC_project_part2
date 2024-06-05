@@ -7,4 +7,4 @@ export NNODES=2
 #SBATCH --output stdout.out
 #SBATCH --error error.out
 
-singularity exec matrixMul.sif 
+singularity exec matrixMul.sif /opt/main
