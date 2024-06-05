@@ -7,4 +7,7 @@ export NNODES=2
 #SBATCH --output stdout.out
 #SBATCH --error error.out
 
-singularity exec matrixMul.sif bash -c "mpirun -np 2 /opt/main"
+export TMPDIR=$HOME/tmp
+mkdir -p $TMPDIR
+
+singularity exec matrixMul.sif bash -c "export OMPI_MCA_tempdie_base=$TMPDIR && mpirun -np 2 /opt/main"
