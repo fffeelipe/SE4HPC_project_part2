@@ -39,4 +39,7 @@ jobs:
       run: ssh-keygen -f "/home/runner/.ssh/known_hosts" -R "login.g100.cineca.it"
 
     - name: remove previous logs and run job via SSH and get results
-      run: sshpass -p "${{secrets.CENECA_SECRET}}" ssh -o StrictHostKeyChecking=no a08trb71@login.g100.cineca.it "rm slurm* && sbatch job.sh && sleep 5 && cat slurm*"
+      run: sshpass -p "${{secrets.CENECA_SECRET}}" ssh -o StrictHostKeyChecking=no a08trb71@login.g100.cineca.it "rm slurm* && sbatch job.sh && sleep 60 && cat slurm*"
+
+    - name: Getting the output
+      run: sshpass -p "${{secrets.CENECA_SECRET}}" ssh -o StrictHostKeyChecking=no a08trb71@login.g100.cineca.it "cat stdout.out"
