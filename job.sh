@@ -10,4 +10,4 @@ export NNODES=2
 export TMPDIR=$HOME/tmp
 mkdir -p $TMPDIR
 
-singularity exec matrixMul.sif bash -c "export OMPI_MCA_tempdie_base=$TMPDIR && mpirun -np 2 /opt/main"
+singularity exec matrixMul.sif bash -c "export OMPI_MCA_tempdir_base=$TMPDIR && mpirun -np 2 /opt/main"
