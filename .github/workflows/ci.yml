@@ -42,4 +42,4 @@ jobs:
       run: sshpass -p "${{secrets.CENECA_SECRET}}" ssh -o StrictHostKeyChecking=no a08trb71@login.g100.cineca.it "chmod +x job.sh"
 
     - name: remove previous logs and run job via SSH and get results
-      run: sshpass -p "${{secrets.CENECA_SECRET}}" ssh -o StrictHostKeyChecking=no a08trb71@login.g100.cineca.it "sbatch job.sh && sleep 60 && cat stdout.out"
+      run: sshpass -p "${{secrets.CENECA_SECRET}}" ssh -o StrictHostKeyChecking=no a08trb71@login.g100.cineca.it "sbatch job.sh && sleep 20 && cat stdout.out"
