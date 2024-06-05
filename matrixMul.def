@@ -2,12 +2,11 @@ Bootstrap: docker
 From: ubuntu:latest
 
 %files
-    build/main /opt
-    matrix*.txt /opt
+    ./build/main /opt/main
 
 %post
     echo "Installing required packages..."
-    apt-get update && apt-get install -y wget git bash gcc gfortran g++ make file libopenmpi-dev mpich ssh
+    apt-get update && apt-get install -y wget libopenmpi-dev ssh
 
     echo "Compiling the MPI application..."
     cd /opt
