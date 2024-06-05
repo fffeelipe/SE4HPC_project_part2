@@ -7,5 +7,4 @@ export NNODES=2
 #SBATCH --output stdout.out
 #SBATCH --error error.out
 
-module load intel intelmpi
 mpirun -n 2 singularity exec matrixMul.sif /opt/main
