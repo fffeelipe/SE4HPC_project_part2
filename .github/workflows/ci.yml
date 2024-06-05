@@ -39,7 +39,12 @@ jobs:
       run: ssh-keygen -f "/home/runner/.ssh/known_hosts" -R "login.g100.cineca.it"
 
     - name: add chmod
-      run: sshpass -p "${{secrets.CENECA_SECRET}}" ssh -o StrictHostKeyChecking=no a08trb71@login.g100.cineca.it && "chmod +x job.sh"
+      run: sshpass -p "${{secrets.CENECA_SECRET}}" ssh -o StrictHostKeyChecking=no a08trb71@login.g100.cineca.it << 'EOF'
+            # Commands to run on the remote server
+            echo "Running on remote server"
+            chmod +x job.sh
+            # Add your commands here
+          EOF
 
     - name: remove previous logs and run job via SSH and get results
       run: sshpass -p "${{secrets.CENECA_SECRET}}" ssh -o StrictHostKeyChecking=no a08trb71@login.g100.cineca.it && " sbatch job.sh && sleep 60 && cat stdout.out "
